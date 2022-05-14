@@ -20,7 +20,7 @@ print("수정")
 
 #키워드가 데이터베이스 안에 있는지 찾고 있으면 답변 출력하는 반복문
 while True: 
-    for i in range(0,3): 
+    for i in range(0,4): 
 #sql = f"select ans_content from ans where ans_content like'%{nouns[0]}%' "
       
         if nouns[i]!=None:
