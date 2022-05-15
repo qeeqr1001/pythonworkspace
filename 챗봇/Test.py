@@ -16,16 +16,18 @@ conn = pymysql.connect(host='localhost', user='root', password='1234',db='chatbo
 
 
 # quest_keyword 배열로 받기
-sqlK = "SELECT quest_keyword FROM ans INNER JOIN quest ON quest.quest_id=ans.ans_id "
 
-with conn.cursor() as cur:
-    cur.execute(sqlK)  
-    result = cur.fetchall() 
-    keyList = list(result) 
-    print(keyList)
-    for i in keyList:
-        print(keyList[i])
-        print("!")
+sql = "SELECT quest_keyword FROM ans INNER JOIN quest ON quest.quest_id=ans.ans_id "
+
+with conn:
+    with conn.cursor() as cur:
+        cur.execute(sql)  
+        result = cur.fetchall() 
+        print(result) 
+        keyList=list(result)
+        keySubList=list(keyList)
+        print(keySubList[0])
+            
         
 
 
