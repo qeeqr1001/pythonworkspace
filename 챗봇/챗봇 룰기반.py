@@ -8,7 +8,6 @@ from konlpy.tag import Okt
 
 okt=Okt()
 con, cur = None, None
-
 conn = pymysql.connect(host='localhost', user='root', password='1234',db='chatbot',port=3307, charset='utf8')
 
 #pd.read_sql로 데이터베이스 데이터를 불러와 변수에 저장
@@ -27,24 +26,39 @@ for rule in qkeyword_data["quest_keyword"]:
 print(qkeyword_dic)
 print(qkeyword_dic[0][1])
 
+
 req = input('궁금한 점을 입력해보세요. ') 
 nouns=okt.nouns(req) #질문 문장 형태소 분석
 print(nouns)
-
-count=0
+    
+def getresponse(req):  
+               
+    for i in range(0,7):
+        count=0
+        for j in range(0,2):
+            if nouns[j]== qkeyword_dic[i][j]:
+                count+=1
+            
+            if count>=2:
+                sql=f"SELECT ans_content FROM ans INNER JOIN quest ON quest.quest_id=ans.ans_id WHERE quest_keyword like'%{qkeyword_dic[i][j]}%' "
+                with conn:
+                    with conn.cursor() as cur:
+                        cur.execute(sql)  
+                        result = cur.fetchall() 
+                        print(result)
+                             
+           
+                
 #반복문
 while True: 
     if req == 'exit': 
         break 
     else:
-        sql=f"SELECT ans_content FROM ans INNER JOIN quest ON quest.quest_id=ans.ans_id WHERE quest_keyword like'%{nouns[0]}%' "
-        with conn:
-            with conn.cursor() as cur:
-                cur.execute(sql)  
-                result = cur.fetchall() 
-                print(result) 
-                break
+        getresponse(req)
+        break
+        
 
+        
 
 
 
