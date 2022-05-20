@@ -1,5 +1,4 @@
 #-*- encoding: utf-8 -*-
-import numpy as np
 import pandas as pd #pandas 이용
 import pymysql
 import sqlalchemy
@@ -156,32 +155,8 @@ def selectQuest(ml):
 
 
 
-# def sameQ(i):
-        
-#         for j in range(len(results[i])):
-            
-#             for n in range(len(results[i])):
-        
-#                 if i>0:
-                    
-#                     if results[i][j]==results[i-1][n]:
-                    
-#                         same.append(results[i][j])
-#                         # print(results[i][n])
-#                         # same.append(results[i][j])
-#                         # return same
-                        
-#                     else:
-#                         same.append(results[i][j])
-#                         continue
-#                 else:
-                
-#                     continue
-#         print(results)
-        
-       
-            
-            
+
+    
                              
 #반복문
 while True: 
